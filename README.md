@@ -3,8 +3,8 @@ Heureka
 
 In the exercise one is to design, implement and test a software system which applies heuristic search methods to
 
-1) Route planning in a city map
-2) Logical deduction in propositional logic on clause form
+1. Route planning in a city map
+2. Logical deduction in propositional logic on clause form
 
 
 ## Route Finding
