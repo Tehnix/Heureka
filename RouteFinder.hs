@@ -2,6 +2,7 @@
 module RouteFinder where
 import ReadCSV (parseCityMapCSV)
 import Graph
+import Debug.Trace
 
 
 -- | A vertex is represented as a coordinate
@@ -20,12 +21,14 @@ convertCSVToEdges ((s1,s2,l,e1,e2):es) = edge (s1,s2) (e1,e2) l 1 : convertCSVTo
 -- | Constuct a graph from a CSV file
 cityMapGraph :: IO (Graph Vertex)
 cityMapGraph = do
-    csv <- parseCityMapCSV "citymap.txt"
+    csv <- parseCityMapCSV "data/citymap.txt"
     return $ constructGraph emptyGraph $ convertCSVToEdges csv
 
 -- | Calculate the manhattan distance on a square grid, based on two vertices
 heuristic :: Vertex -> Vertex -> Int
-heuristic (a1, a2) (b1, b2) = abs (a1 - a2) + (b1 - b2)
+heuristic (a1, a2) (b1, b2) = do
+    let h = abs (a1 - a2) + (b1 - b2)
+    trace ("h = " ++ show h) h
 
 -- | A directed graph is represented as a set of starting vertices (the keys)
 -- | Run the A* algorithm on the CityMap Graph
@@ -41,7 +44,6 @@ perfromAStarRun = do
     -- Finally, output it kinda nicely
     putStrLn "Path obtained by running A* on the city map"
     mapM_ print path
-
 
 main :: IO ()
 main = perfromAStarRun

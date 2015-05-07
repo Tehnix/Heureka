@@ -20,6 +20,16 @@ The data can be found in `data/citymap.txt`, and is in the format shown below,
     10 70 SktPedersStraede 35 80
 </pre>
 
+If we start at the cornor of SktPedersStraede & Larsbjoernsstraede and end at the cornor of Studiestraede & Larsbjoernsstraede, then manually going through the route, one can come up with the path,
+
+<pre>
+    35 80 SktPedersStraede 50 90
+    50 90 LarslejStraede 35 120
+    35 120 Noerrevoldgade 25 100
+    25 100 Noerrevoldgade 10 70
+    10 70 Vestervoldgade 20 50
+    20 50 Studiestraede 45 70
+</pre>
 
 ## Inference Engine for Propositional Logic
 The second part is a construction of a proof system for propositional logic in clausal form. Optimally, this part will re-use the heuristic search components developed in the first part.
