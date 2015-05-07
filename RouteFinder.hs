@@ -2,21 +2,20 @@
 module RouteFinder where
 import ReadCSV (parseCityMapCSV)
 import Graph
-import Debug.Trace
 
 
 -- | A vertex is represented as a coordinate
 type Vertex = (Int, Int)
 
 -- | Format the output of an Edge with (int, int) vertex a bit nicer
-instance Show (Edge Vertex) where
+instance {-# OVERLAPPING #-} Show (Edge Vertex) where
     show (Edge (s1,s2) (e1,e2) l w) = unwords [show s1, show s2, l, show e1, show e2]
 
 
 -- | Convert the CSV data into a list of edges
 convertCSVToEdges :: [(Int, Int, Label, Int, Int)] -> [Edge Vertex]
 convertCSVToEdges [] = []
-convertCSVToEdges ((s1,s2,l,e1,e2):es) = edge (s1,s2) (e1,e2) l 1 : convertCSVToEdges es
+convertCSVToEdges ((s1,s2,l,e1,e2):es) = edge (s1,s2) (e1,e2) l (sqrt $ fromIntegral $ (s1-e1)^2 + (s2-e2)^2) : convertCSVToEdges es
 
 -- | Constuct a graph from a CSV file
 cityMapGraph :: IO (Graph Vertex)
@@ -24,9 +23,9 @@ cityMapGraph = do
     csv <- parseCityMapCSV "data/citymap.txt"
     return $ constructGraph emptyGraph $ convertCSVToEdges csv
 
--- | Calculate the manhattan distance on a square grid, based on two vertices
-heuristic :: Vertex -> Vertex -> Int
-heuristic (a1, a2) (b1, b2) = abs (a1 - a2) + (b1 - b2)
+-- | Calculate the distance between two vertices
+heuristic :: Vertex -> Vertex -> Float
+heuristic (a1, a2) (b1, b2) = sqrt $ fromIntegral $ (b1-a1)^2 + (b2-a2)^2
 
 -- | A directed graph is represented as a set of starting vertices (the keys)
 -- | Run the A* algorithm on the CityMap Graph

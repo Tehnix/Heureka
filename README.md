@@ -18,9 +18,11 @@ The data can be found in `data/citymap.txt`, and is in the format shown below,
     10 70 Vestervoldgade 20 50
     20 50 Vestervoldgade 10 70
     10 70 SktPedersStraede 35 80
+    ...
 ```
 
 If we start at the corner of SktPedersStraede & Larsbjoernsstraede and end at the corner of Studiestraede & Larsbjoernsstraede, then manually going through the route, one can come up with the path,
+
 
 ```haskell
     35 80 SktPedersStraede 50 90
@@ -35,7 +37,7 @@ If we run it through Google Maps, we get,
 
 ![screen shot 2015-05-07 at 23 19 12](https://cloud.githubusercontent.com/assets/1189998/7526148/ac50937a-f50f-11e4-8bf7-614c7a84d11b.png)
 
-which, in our dataset is impossible,
+which, in our dataset, is impossible,
 
 ```haskell
     35 80 SktPedersStraede 50 90
@@ -52,31 +54,27 @@ The alternate route though is the same as the manually calculated.
 
 
 ### Heuristics
-With the given dataset, and the implemented A* algorithm in `Graph.hs`, we can try to optimize our heuristics function. First off, we try a rather simple one,
+With the given dataset, and the implemented A* algorithm in `Graph.hs`, we can try our algorithm and see how it performs. We use the distance of two points to calculate the heuristics, like so,
 
 ```haskell
-    -- | Calculate the manhattan distance on a square grid, based on two vertices
-    heuristic :: Vertex -> Vertex -> Int
-    heuristic (a1, a2) (b1, b2) = abs (a1 - a2) + (b1 - b2)
+-- | Calculate the distance between two vertices
+heuristic :: Vertex -> Vertex -> Float
+heuristic (a1, a2) (b1, b2) = sqrt $ fromIntegral $ (b1-a1)^2 + (b2-a2)^2
 ```
 
 we get the following path,
 
 ```haskell
-    Path obtained by running A* on the city map
+Path obtained by running A* on the city map
     35 80 SktPedersStraede 50 90
     50 90 LarslejStraede 35 120
-    35 120 Noerrevoldgade 60 150
-    60 150 Noerregade 65 110
-    65 110 Noerregade 65 100
-    65 100 Noerregade 70 85
-    70 85 Noerregade 80 70
-    80 70 Vestergade 55 55
-    55 55 Vestergade 35 35
-    35 35 Vestervoldgade 20 50
+    35 120 Noerrevoldgade 25 100
+    25 100 Noerrevoldgade 10 70
+    10 70 Vestervoldgade 20 50
     20 50 Studiestraede 45 70
 ```
 
+Which corresponds to the one we manually found, and also the route Google Maps would probably take if it had the same dataset.
 
 
 Inference Engine for Propositional Logic
