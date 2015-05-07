@@ -26,9 +26,7 @@ cityMapGraph = do
 
 -- | Calculate the manhattan distance on a square grid, based on two vertices
 heuristic :: Vertex -> Vertex -> Int
-heuristic (a1, a2) (b1, b2) = do
-    let h = abs (a1 - a2) + (b1 - b2)
-    trace ("h = " ++ show h) h
+heuristic (a1, a2) (b1, b2) = abs (a1 - a2) + (b1 - b2)
 
 -- | A directed graph is represented as a set of starting vertices (the keys)
 -- | Run the A* algorithm on the CityMap Graph
