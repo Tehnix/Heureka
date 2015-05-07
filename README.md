@@ -10,6 +10,8 @@ In the exercise one is to design, implement and test a software system which app
 ## Route Finding
 In the first part, the task is to design, implement and test a program for calculating a good (car/bicycle) travel route between two given street crossings in a city map, taking into account one-way streets.
 
+Try with an A* algorithm and/or a RBFS algorithm, introducing an appropriate heuristics for guiding the search.
+
 The data can be found in `data/citymap.txt`, and is in the format shown below,
 
 <pre>
