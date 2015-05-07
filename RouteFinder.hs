@@ -35,8 +35,8 @@ heuristic (a1, a2) (b1, b2) = do
 perfromAStarRun :: IO ()
 perfromAStarRun = do
     g <- cityMapGraph
-    let startVertex = (35, 80) -- Cornor of SktPedersStraede & Larsbjoernsstraede
-    let goalVertex = (45, 70) -- Cornor of Studiestraede & Larsbjoernsstraede
+    let startVertex = (35, 80) -- Corner of SktPedersStraede & Larsbjoernsstraede
+    let goalVertex = (45, 70) -- Corner of Studiestraede & Larsbjoernsstraede
     -- Perform the search
     let (cameFrom, costSoFar) = aStarSearch g startVertex goalVertex heuristic
     -- Reconstruct the path taken
