@@ -44,7 +44,7 @@ which, in our dataset is impossible,
     60 150 Noerregade 65 110
     65 110 Noerregade 65 100
     65 100 Noerregade 70 85
-    --
+    -- wrong direction !!
     45 70 Studiestraede 70 85
 </pre>
 
