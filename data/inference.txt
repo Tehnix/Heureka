@@ -1,0 +1,15 @@
+p1a or p2a
+p1b or p2b
+p1c or p2c
+
+non p1a or non p1b
+non p1a or non p1c
+non p1b or non p1c
+
+non p2b or non p2a
+non p2b or non p2c
+non p2a or non p2c
+
+non p1a or non p2a
+non p1b or non p2b
+non p1c or non p2c
