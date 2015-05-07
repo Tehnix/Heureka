@@ -31,6 +31,10 @@ If we start at the cornor of SktPedersStraede & Larsbjoernsstraede and end at th
     20 50 Studiestraede 45 70
 </pre>
 
+If we run it through Google Maps, we get,
+
+![screen shot 2015-05-07 at 23 19 12](https://cloud.githubusercontent.com/assets/1189998/7526148/ac50937a-f50f-11e4-8bf7-614c7a84d11b.png)
+
 ## Inference Engine for Propositional Logic
 The second part is a construction of a proof system for propositional logic in clausal form. Optimally, this part will re-use the heuristic search components developed in the first part.
 
